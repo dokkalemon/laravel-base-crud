@@ -36,7 +36,20 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Assegno i dati del form a una variabile data
+        $data = $request->all();
+
+        //Creo una nuova istanza per creare una nuova riga nel db
+        $new_comic = new Comic();
+
+        //MASS ASSIGNMENT
+        $new_comic->fill($data);
+
+        $new_comic->save();
+
+        return redirect()->route('comics.show', $new_comic->id);
+
+        dump($data);
     }
 
     /**
