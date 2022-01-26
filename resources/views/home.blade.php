@@ -32,9 +32,6 @@
                     </td>
                 </tr>
                 @endforeach
-
-
-
             </tbody>
         </table>
     </section>
