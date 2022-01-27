@@ -2,9 +2,15 @@
 
 @section('content')
     <section>
-        <h1>Comics Archive</h1>
         <section>
             <h1 class="mt-5">All Comics</h1>
+
+            @if (session('deleted'))
+                <div class="alert alert-success">
+                    <strong> {{session('deleted')}}</strong>
+                    successfully deleted.
+                </div>
+            @endif
     
             <table class="table">
                 <thead>
@@ -27,10 +33,15 @@
                             <a href="{{ route('comics.show', $comic->id)}}"><button class="btn btn-primary">SHOW</button></a>   
                         </td>
                         <td>
-                            <a href=""><button class="btn btn-success">EDIT</button></a>   
+                            <a href="{{route('comics.edit', $comic->id)}}"><button class="btn btn-success">EDIT</button></a>   
                         </td>
                         <td>
-                            <a href=""><button class="btn btn-danger">DELETE</button></a>   
+                            <form action="{{ route('comics.destroy', $comic->id) }}" method="post">
+                            @csrf
+
+                            @method('DELETE')
+                            <input type="submit" value="DELETE" class="btn btn-danger" onclick="return confirm('Are you sure?')">
+                            </form>   
                         </td>
                     </tr>
                     @endforeach

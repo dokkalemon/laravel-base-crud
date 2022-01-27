@@ -17,6 +17,7 @@
     </div>
 
     <a href="{{ route('comics.index')}}">Back</a>
+    <a href="{{ route('comics.edit', $comic->id)}}">Modify</a>
 
 
 
